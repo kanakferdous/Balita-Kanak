@@ -54,6 +54,7 @@ get_header()
           'posts_per_page' => 3, // Number of related posts to display
           'post__not_in' => array($post->ID), // Ensure that the current post is not displayed
           'orderby' => 'rand', // Randomize the results
+          'category_in' => wp_get_post_categories( $post->ID ),
         );
         // Initiate the custom query
         $custom_query = new WP_Query($custom_query_args);
