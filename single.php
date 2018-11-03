@@ -49,18 +49,26 @@ get_header()
         </div>
         <div class="row">
         <?php
-        // Build our basic custom query arguments
-        $custom_query_args = array(
-          'posts_per_page' => 3, // Number of related posts to display
-          'post__not_in' => array($post->ID), // Ensure that the current post is not displayed
-          'orderby' => 'rand', // Randomize the results
-          'category_in' => wp_get_post_categories( $post->ID ),
+        // Default arguments
+        $args = array(
+          'posts_per_page' => 3, // How many items to display
+          'post__not_in' => array(get_the_ID()), // Exclude current post
+          'no_found_rows' => true, // We don't ned pagination so this speeds up the query
         );
-        // Initiate the custom query
-        $custom_query = new WP_Query($custom_query_args);
-        // Run the loop and output data for the results
-        if ($custom_query->have_posts()) : ?>
-	      <?php while ($custom_query->have_posts()) : $custom_query->the_post(); ?>
+
+        // Check for current post category and add tax_query to the query arguments
+        $cats = wp_get_post_terms(get_the_ID(), 'category');
+        $cats_ids = array();
+        foreach ($cats as $wpex_related_cat) {
+          $cats_ids[] = $wpex_related_cat->term_id;
+        }
+        if (!empty($cats_ids)) {
+          $args['category__in'] = $cats_ids;
+        }
+        // Query posts
+        $wpex_query = new wp_query($args);
+        // Loop through posts
+        foreach ($wpex_query->posts as $post) : setup_postdata($post); ?>
           <div class="col-md-6 col-lg-4">
             <a href="<?php echo get_the_permalink(); ?>" class="a-block d-flex align-items-center height-md" style="background-image: url('<?php echo wp_get_attachment_url(get_post_thumbnail_id($post->ID)); ?>'); ">
               <div class="text">
@@ -80,11 +88,11 @@ get_header()
               </div>
             </a>
           </div>
-          <?php endwhile; ?>
-          <?php endif;
-          // Reset postdata
-          wp_reset_postdata();
-          ?>
+          <?php
+          // End loop
+          endforeach;
+          // Reset post data
+          wp_reset_postdata(); ?>
         </div>
       </div>
     </section>
