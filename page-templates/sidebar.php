@@ -1,9 +1,9 @@
 <div class="col-md-12 col-lg-4 sidebar">
     <div class="sidebar-box search-form-wrap">
-        <form action="<?php echo esc_url(home_url('/')); ?>" class="search-form">
+        <form action="<?php echo home_url('/'); ?>" class="search-form">
             <div class="form-group">
                 <span class="icon fa fa-search"></span>
-                <input type="text" class="form-control" id="s" placeholder="<?php esc_attr_e('Type a keyword and hit enter', 'balitakanak'); ?>">
+                <input type="search" class="form-control" name="s" placeholder="<?php echo esc_attr_x('Type keyword to search...', 'balitakanak') ?>" value="<?php echo get_search_query() ?>"/>
             </div>
         </form>
     </div>

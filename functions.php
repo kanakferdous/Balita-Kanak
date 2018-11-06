@@ -151,6 +151,15 @@ function balitakanak_widgets_init()
         'before_title' => '',
         'after_title' => '',
     ));
+    register_sidebar(array(
+        'name' => __('Search Form', 'balitakanak'),
+        'id' => 'search-form',
+        'description' => __('Widgets in this area will be shown search from', 'balitakanak'),
+        'before_widget' => '',
+        'after_widget' => '',
+        'before_title' => '',
+        'after_title' => '',
+    ));
 }
 add_action('widgets_init', 'balitakanak_widgets_init');
 

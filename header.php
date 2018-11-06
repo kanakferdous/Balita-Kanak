@@ -19,10 +19,7 @@
             </div>
             <div class="col-3 search-top">
               <!-- <a href="#"><span class="fa fa-search"></span></a> -->
-              <form action="<?php echo esc_url(home_url('/')); ?>" class="search-top-form">
-                <span class="icon fa fa-search"></span>
-                <input type="text" id="s" placeholder="<?php esc_attr_e('Type keyword to search...', 'balitakanak'); ?>">
-              </form>
+              <?php get_search_form(); ?>
             </div>
           </div>
         </div>

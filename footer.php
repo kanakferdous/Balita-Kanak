@@ -22,7 +22,7 @@
                   $q->the_post();
                 ?>
                 <li>
-                  <a href="">
+                  <a href="<?php echo get_the_permalink();?>">
                     <?php the_post_thumbnail('ppost-thumb'); ?>
                     <div class="text">
                       <h4><?php the_title(); ?></h4>

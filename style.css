@@ -132,9 +132,19 @@ a.tag-cloud-link:hover{
 
 .wp-caption{}
 .wp-caption-text{}
-.screen-reader-text{}
+.screen-reader-text{
+    display: none;
+}
 .gallery-caption{}
 .bypostauthor{}
 .alignright{}
 .alignleft{}
 .aligncenter{}
+.search-heading {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.search-result {
+    margin-bottom: 50px;
+}

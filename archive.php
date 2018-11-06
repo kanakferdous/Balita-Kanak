@@ -3,7 +3,7 @@
       <div class="container">
         <div class="row mb-4">
           <div class="col-md-6">
-            <h2 class="mb-4"><?php printf(__('Category : %s', 'balitakanak'), single_cat_title('', false)); ?></h2>
+            <h2 class="mb-4"><?php the_archive_title(); ?></h2>
           </div>
         </div>
         <div class="row blog-entries">
